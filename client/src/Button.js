@@ -1,8 +1,22 @@
 import React, { useState, useEffect } from "react";
+import axios from 'axios'
 
 
 
 function Button () {
+
+
+    const useButtonPress = (e) => {
+        e.preventDefault();
+
+        setCount(count + 1)
+        const data = {
+            count: count + 1
+        }
+        axios.post("http://localhost:8000/count", data)
+
+        
+    }
 
     const [count, setCount] = useState(0);
 
@@ -17,7 +31,7 @@ function Button () {
         <div>
             <br />
             <div className="text-center">
-                <button className="btn btn-primary" onClick={() => setCount(count + 1)} >
+                <button className="btn btn-primary" onClick={useButtonPress} >
                     Click Me!!
                 </button>
             </div>
@@ -29,8 +43,6 @@ function Button () {
             </div>
         </div>
     );
-
-
 }
 
 export default Button
